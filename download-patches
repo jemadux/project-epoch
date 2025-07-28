@@ -1,0 +1,40 @@
+#!/bin/bash
+
+# Set target directory
+WINEPREFIX="$HOME/.var/app/com.usebottles.bottles/data/bottles/bottles/warcraft"
+TARGET_DIR="$WINEPREFIX/drive_c/project-epoch/"
+WOW_DIR="$TARGET_DIR/3.3.5-enUS-minified/"
+DATA_DIR="$WOW_DIR/Data"
+RM_DIR="$DATA_DIR/enUS/"
+
+# Creat e the directory if it doesn't exist
+mkdir -p "$TARGET_DIR"
+
+# Array of files and their download URLs
+declare -A files=(
+  ["Project-Epoch.exe"]="http://updater.project-epoch.net/api/v2/latest?file=Project-Epoch.exe"
+  ["ClientExtensions.dll"]="http://updater.project-epoch.net/api/v2/latest?file=ClientExtensions.dll"
+  ["patch-Y.MPQ"]="http://updater.project-epoch.net/api/v2/latest?file=patch-Y.MPQ"
+  ["patch-B.MPQ"]="http://updater.project-epoch.net/api/v2/latest?file=patch-B.MPQ"
+  ["patch-Z.MPQ"]="http://updater.project-epoch.net/api/v2/latest?file=patch-Z.MPQ"
+  ["patch-A.MPQ"]="http://updater.project-epoch.net/api/v2/latest?file=patch-A.MPQ"
+  ["realmlist.wtf"]="http://updater.project-epoch.net/api/v2/latest?file=realmlist"
+  ["credits.txt"]="http://updater.project-epoch.net/api/v2/latest?file=credits.txt"
+)
+
+# Download each file with aria2c
+for filename in "${!files[@]}"; do
+  echo "Downloading $filename..."
+  aria2c -x 16 -s 16 -o "$filename" -d "$TARGET_DIR" "${files[$filename]}"
+done
+
+echo "All files downloaded to $TARGET_DIR."
+
+echo "Moving files to their respective directories..."
+
+mv -v "$TARGET_DIR"/patch-*.MPQ "$DATA_DIR"
+mv -v "$TARGET_DIR/realmlist.wtf" "$RM_DIR"
+mv -v "$TARGET_DIR/Project-Epoch.exe" "$WOW_DIR"
+mv -v "$TARGET_DIR/ClientExtensions.dll" "$WOW_DIR"
+mv -v "$TARGET_DIR/credits.txt" "$WOW_DIR"
+echo "Done , run Project Epoch.exe to start the game from your wine frontend."
