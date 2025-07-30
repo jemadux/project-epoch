@@ -1,4 +1,10 @@
 #!/bin/bash
+## Editing the Script
+
+if ! command -v aria2c &> /dev/null; then
+        echo "aria2 is required. Please install it using your package manager."
+        exit 1
+fi
 
 # Set target directory
 WINEPREFIX="$HOME/.var/app/com.usebottles.bottles/data/bottles/bottles/warcraft"

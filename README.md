@@ -1,69 +1,34 @@
 # project-epoch on Linux 
 
+## Requirements
 
+The `download-patches` script requires `aria2` to function. Install `aria2` using your distribution's package manager:
 
+- **Debian / Ubuntu / Bazzite**:
+    ```sh
+    sudo apt update
+    sudo apt install aria2
+    ```
+- **Arch / Manjaro**:
+    ```sh
+    sudo pacman -S aria2
+    ```
+- **Fedora**:
+    ```sh
+    sudo dnf install aria2
+    ```
 
-## Installing WoW Addons on Linux
-# project-epoch on Linux 
+## Wine Prefixes and Bottles
 
+A *Wine prefix* is a directory that contains a separate Wine environment, including its own registry, configuration, and installed programs. This allows you to isolate different Windows applications.
 
+- **Bottles** is a graphical tool for managing Wine prefixes. It simplifies creating, configuring, and running different Wine environments.
+- **Wine** itself can be used directly to create and manage prefixes using the `WINEPREFIX` environment variable.
 
+For example, to create a new Wine prefix:
+```sh
+WINEPREFIX=~/mywineprefix winecfg
+```
 
-## Installing WoW Addons on Linux
-
-To install World of Warcraft (WoW) addons on Linux:
-
-1. **Locate your WoW AddOns directory:**  
-    This is usually found at:  
-    `<your_wine_prefix>/drive_c/<projectepoch>/Interface/AddOns/`  
-    Replace `<your_wine_prefix>` `projectepoch` with the path to your Wine prefix (see the Wine Prefixes section below).
-
-2. **Download the addon:**  
-    - Download the addon ZIP file from a trusted source (such as CurseForge or GitHub).
-    - Extract the contents of the ZIP file into the `AddOns` directory above.
-
-3. **Enable the addon in-game:**  
-    - Start WoW via your Wine environment.
-    - At the character selection screen, click the "AddOns" button and make sure your new addon is enabled.
-
-### Using My Addons
-
-If you want to use the addons I maintain:
-
-- Visit the [Interface directory of my GitHub repository](https://github.com/jemadux/project-epoch/tree/main/Interface).
-- Download the desired addon(s) from there.
-- Extract them into your WoW `AddOns` directory as described above.
-
-**Note:**  
-Always ensure you are copying addon folders (not just files) directly into the `AddOns` directory.
-
-> Make sure to specify the correct Wine prefix and wow folder  for your setup (see the Wine Prefixes section below) when configuring or installing addons.
-
-To install World of Warcraft (WoW) addons on Linux:
-
-1. **Locate your WoW AddOns directory:**  
-    This is usually found at:  
-    `<your_wine_prefix>/drive_c/<projectepoch>/Interface/AddOns/`  
-    Replace `<your_wine_prefix>` `projectepoch` with the path to your Wine prefix (see the Wine Prefixes section below).
-
-2. **Download the addon:**  
-    - Download the addon ZIP file from a trusted source (such as CurseForge or GitHub).
-    - Extract the contents of the ZIP file into the `AddOns` directory above.
-
-3. **Enable the addon in-game:**  
-    - Start WoW via your Wine environment.
-    - At the character selection screen, click the "AddOns" button and make sure your new addon is enabled.
-
-### Using My Addons
-
-If you want to use the addons I maintain:
-
-- Visit the [Interface directory of my GitHub repository](https://github.com/jemadux/project-epoch/tree/main/Interface).
-- Download the desired addon(s) from there.
-- Extract them into your WoW `AddOns` directory as described above.
-
-**Note:**  
-Always ensure you are copying addon folders (not just files) directly into the `AddOns` directory.
-
-> Make sure to specify the correct Wine prefix and wow folder  for your setup (see the Wine Prefixes section below) when configuring or installing addons.
+To use Bottles, install it from your distribution's package manager or Flatpak, then follow the GUI to create and manage prefixes.
 
